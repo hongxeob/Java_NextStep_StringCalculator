@@ -8,6 +8,11 @@ public class StringCalculator {
         }
         //숫자를 구분자 ,(콤마)로 가졌을 경우
         String[] values = text.split(",");
+        return sum(values);
+    }
+
+    //더하고,정수화 하는 메서드
+    private static int sum(String[] values) {
         int sum = 0;
         for (String value : values) {
             sum += Integer.parseInt(value);
