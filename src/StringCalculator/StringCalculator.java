@@ -2,21 +2,40 @@ package StringCalculator;
 
 public class StringCalculator {
     public int add(String text) {
-        //문자가 비었거나 null
-        if (text == null || text.isEmpty()) {
+        if (isBlank(text)) {
             return 0;
         }
-        //숫자를 구분자 ,(콤마)로 가졌을 경우
-        String[] values = text.split(",");
-        return sum(values);
+        return sum(toInts(split(text)));
     }
 
-    //더하고,정수화 하는 메서드
-    private static int sum(String[] values) {
+    //문자열이 비거나 null 체크 메서드
+    private static boolean isBlank(String text) {
+        return text == null || text.isEmpty();
+    }
+
+    //문자열을 split해 주는 메서드
+    private static String[] split(String text) {
+        String[] values = text.split(",");
+        return values;
+    }
+
+    //더하는 메서드
+    private int sum(int[] numbers) {
         int sum = 0;
-        for (String value : values) {
-            sum += Integer.parseInt(value);
+        for (int number : numbers) {
+            sum += number;
         }
         return sum;
     }
+
+    //정수화 하는 메서드
+    private int[] toInts(String[] values) {
+        int[] numbers = new int[values.length];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = Integer.parseInt(values[i]);
+        }
+        return numbers;
+    }
+
+
 }
